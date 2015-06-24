@@ -35,10 +35,7 @@ def add_git_segment():
     if 'Not a git repo' in err:
         return
 
-    if out:
-        branch = out[len('refs/heads/'):].rstrip()
-    else:
-        branch = '(Detached)'
+    branch = '%s %s' % (powerline.branch, out[len('refs/heads/'):].rstrip() if out else '(Detached)')
 
     has_pending_commits, has_untracked_files, origin_position = get_git_status()
     branch += origin_position
